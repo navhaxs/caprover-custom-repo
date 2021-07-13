@@ -29,11 +29,7 @@ services:
             notExposeAsWebApp: 'true'
             dockerfileLines:
               - FROM invoiceninja/invoiceninja:$$cap_app_tag
-              - RUN curl -o create-env-file-from-sys-env.sh https://navhaxs.github.io/caprover-custom-repo/invoiceninja/create-env-file-from-sys-env.sh \\
-              - "    && chmod +x create-env-file-from-sys-env.sh \\"
-              - "    && /var/www/app/create-env-file-from-sys-env.sh \\"
-              - "    && php artisan db:seed --force \\"
-              - "    && php artisan ninja:create-account --email=$$cap_user_email --password=$$cap_user_password"
+              - RUN curl -o create-env-file-from-sys-env.sh https://navhaxs.github.io/caprover-custom-repo/invoiceninja/create-env-file-from-sys-env.sh && chmod +x create-env-file-from-sys-env.sh && /var/www/app/create-env-file-from-sys-env.sh && php artisan db:seed --force && php artisan ninja:create-account --email=$$cap_user_email --password=$$cap_user_password
               - ENTRYPOINT ["docker-entrypoint", "supervisord"]
 
     $$cap_appname:
