@@ -8,3 +8,5 @@ do
     echo "$ENV_VAR=$(printenv $ENV_VAR)" >> .env
   fi
 done
+
+mkdir -p /var/www/app/docker-backup-public
