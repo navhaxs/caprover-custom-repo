@@ -68,7 +68,7 @@ caproverOneClickApp:
     variables:
         - id: $$cap_app_tag
           label: Invoice Ninja Tag
-          defaultValue: '5.1.53'
+          defaultValue: '5.2.12'
           description: 'Check out their docker page for the valid tags https://hub.docker.com/r/invoiceninja/invoiceninja/tags'
         - id: $$cap_user_email
           label: User Email
