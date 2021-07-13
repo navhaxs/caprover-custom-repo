@@ -10,4 +10,3 @@ do
 done
 
 mkdir -p /var/www/app/docker-backup-public
-ls
