@@ -44,6 +44,8 @@ services:
                 - FROM nginx:$$cap_nginx_tag
                 - RUN curl -o /etc/nginx/conf.d/in-vhost.conf https://raw.githubusercontent.com/invoiceninja/dockerfiles/$$cap_app_tag/config/nginx/in-vhost.conf
                 - RUN sed -i "s/app:9000/srv-captain--$$cap_appname-php:9000/g" /etc/nginx/conf.d/in-vhost.conf
+                - RUN sed -i "/^    client_max_body_size/i#\n    gzip on;\n    gzip_types application/javascript application/x-javascript text/javascript text/plain application/xml application/json;\n    gzip_proxied no-cache no-store private expired auth;\n    gzip_min_length 1000;\n" /etc/nginx/conf.d/in-vhost.conf
+                - RUN sed -i "s/client_max_body_size.*;/client_max_body_size 20M;/g" /etc/nginx/conf.d/in-vhost.conf
                 - ENTRYPOINT ["/docker-entrypoint.sh"]
                 - EXPOSE 80
                 - CMD mkdir -p /var/www/app/docker-backup-public && nginx -g 'daemon off;'
