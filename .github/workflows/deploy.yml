@@ -1,0 +1,24 @@
+name: Publish One Click Apps
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Install packages
+        run: npm install
+      - name: Build
+        run: npm build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2.3.1
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./dist
