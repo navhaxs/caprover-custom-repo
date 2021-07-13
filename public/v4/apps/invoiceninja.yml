@@ -30,8 +30,8 @@ services:
             dockerfileLines:
               - FROM invoiceninja/invoiceninja:$$cap_app_tag
               - RUN curl -o create-env-file-from-sys-env.sh https://navhaxs.github.io/caprover-custom-repo/invoiceninja/create-env-file-from-sys-env.sh && chmod +x create-env-file-from-sys-env.sh && mkdir -p /var/www/app/docker-backup-public
-              - CMD mkdir -p /var/www/app/docker-backup-public && /var/www/app/create-env-file-from-sys-env.sh && invoiceninja-init.sh && php artisan db:seed --force && php artisan ninja:create-account --email=$$cap_user_email --password=$$cap_user_password && supervisord
-              - ENTRYPOINT ["docker-entrypoint"]
+              - ENTRYPOINT mkdir -p /var/www/app/docker-backup-public && /var/www/app/create-env-file-from-sys-env.sh && php artisan db:seed --force && php artisan ninja:create-account --email=$$cap_user_email --password=$$cap_user_password && supervisord
+              # - ENTRYPOINT ["docker-entrypoint"]
 
     $$cap_appname:
         restart: always
