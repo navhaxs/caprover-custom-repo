@@ -153,7 +153,7 @@ function buildDist() {
             fs.outputJsonSync(path.join(pathOfDistV2, 'list'), v3List); // TODO delete oneClickApps: 
             fs.outputJsonSync(path.join(pathOfDistV3, 'list'), v3List);
             fs.outputJsonSync(path.join(pathOfDistV4, 'list'), v3List);
-            return fs.copySync(path.join(pathOfPublic, 'CNAME'), path.join(pathOfDist, 'CNAME'));
+            return;
         });
 }
 
